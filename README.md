@@ -1,24 +1,6 @@
-# README
+# Ruby Gems App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+In this app I will use 25+ gems like: devise, pundit, ransack, wicked,
+wicked_pdf, etc.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+I'll make a dummy learning web app like Udemy.
