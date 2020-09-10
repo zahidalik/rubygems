@@ -1,0 +1,49 @@
+%nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  = link_to "Rubygems", root_path, class: "navbar-brand font-weight-bold"
+  - if current_user
+    %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+      %span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      %ul.navbar-nav.mr-auto
+        %li.nav-item{class: "#{'active font-weight-bold' if current_page?(root_path)}"}
+          = link_to root_path, class: 'nav-link' do
+            .fa.fa-home
+            Home
+        %li.nav-item{class: "#{'active font-weight-bold' if current_page?(courses_path)}"}
+          = link_to courses_path, class: 'nav-link' do
+            .fa.fa-book
+            Courses
+      %form.form-inline.my-2.my-lg-0.ml-auto
+        %input.form-control.mr-sm-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
+        %button.btn.btn-outline-success.my-2.my-sm-0{:type => "submit"} Search
+      %ul.navbar-nav.ml-auto
+        %li.nav-item
+          = link_to "#", class: 'nav-link' do
+            .fa.fa-home
+            Another link
+        %li.nav-item.dropdown
+          %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            .fa.fa-user
+            = current_user
+          .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+            = link_to edit_user_registration_path, class: "dropdown-item" do
+              .fa.fa-edit
+              Edit your profile
+            = link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do
+              .fa.fa-power-off
+              Log out
+            .dropdown-divider
+            %a.dropdown-item{:href => "#"} Something else here
+  - else
+    %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+      %span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      %ul.navbar-nav.ml-auto
+        %li.nav-item
+          = link_to new_user_session_path, class: 'nav-link' do
+            .fa.fa-arrow-right
+            Log In
+        %li.nav-item
+          = link_to new_user_registration_path, class: 'nav-link' do
+            .fa.fa-user-plus
+            Sign Up
