@@ -13,10 +13,11 @@
           = link_to courses_path, class: 'nav-link' do
             .fa.fa-book
             Courses
-      %form.form-inline.my-2.my-lg-0.ml-auto
-        %input.form-control.mr-sm-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
-        %button.btn.btn-outline-success.my-2.my-sm-0{:type => "submit"} Search
       %ul.navbar-nav.ml-auto
+        = form_tag courses_path, method: :get, class: "form-inline my-2 my-lg-0" do
+          = text_field_tag(:title, params[:title], placeholder: "Search", class: "form-control")
+          %button.btn.btn-primary.my-sm.my-sm-0{:type => "submit"}
+            .fa.fa-search{"aria-hidden" => "true"}
         %li.nav-item
           = link_to "#", class: 'nav-link' do
             .fa.fa-home
