@@ -1,11 +1,57 @@
-%h1 Home World
-%p This will change into a very interesting web page
+.jumbotron
+  .display-4
+    What do you want to learn today?
+  .p-4
+  = form_tag courses_path, method: :get, class: "form-inline my-2 my-lg-0" do
+    = text_field_tag(:title, params[:title], placeholder: "Search", class: "form-control")
+    %button.btn.btn-primary.my-sm.my-sm-0{:type => "submit"}
+      .fa.fa-search{"aria-hidden" => "true"}
+.card-group
+  .card.card-body
+    %h1
+      .fa.fa-graduation-cap
+    = Course.count
+    online courses
+    .row
+    Explore a variety of fresh topics
+  .card.card-body
+    %h1
+      .fa.fa-chalkboard-teacher
+      /.fa.fa-brain
+    = Course.distinct.count(:user_id)
+    expert instructors
+    .row
+    Find the right instructor for you
+  .card.card-body
+    %h1
+      .fa.fa-user-graduate
+    = User.count
+    active learners
+    .row
+    Joing the knowledge sharing community
+  .card.card-body
+    %h1
+      .fa.fa-infinity
+    Lifetime access
+    .row
+    Learn from your schedule
 
-.fa.fa-flag
-.fab.fa-amazon
-= link_to root_path do
-  .fa.fa-home
-
-= link_to courses_path, class: 'btn btn-success' do
-  .fa.fa-home
-  Courses
+%hr
+%h2
+  Popular Courses
+.card-columns
+  - @courses.each do |course|
+    = render 'courses/course', course: course
+%hr
+%h2
+  Top Rated Courses
+.card-columns
+  - @courses.each do |course|
+    = render 'courses/course', course: course
+%hr
+%h2
+  Latest courses
+.card-columns
+  - @latest_courses.each do |course|
+    = render 'courses/course', course: course
+%hr
