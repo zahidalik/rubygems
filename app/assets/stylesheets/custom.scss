@@ -2,3 +2,6 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 body { background: #fff; }
+
+.form-control.is-invalid{ background-image: none; }
+.form-control.is-valid{ background-image: none; }
