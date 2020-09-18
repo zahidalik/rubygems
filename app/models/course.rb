@@ -8,6 +8,16 @@ class Course < ApplicationRecord
     title
   end
 
+  LANGUAGES = ["English", "Polish", "Russian", "Spanish"]
+  def self.languages
+    LANGUAGES.map { |language| language  }
+  end
+
+  LEVELS = ["Beginner", "Intermediate", "Advanced"]
+  def self.levels
+    LEVELS.map { |level| level  }
+  end
+
   has_rich_text :description
 
   extend FriendlyId

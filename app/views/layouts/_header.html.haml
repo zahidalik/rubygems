@@ -21,11 +21,13 @@
           = link_to users_path, class: 'nav-link' do
             .fa.fa-users
             Users
+      /Search Navbar by ransack
       %ul.navbar-nav.ml-auto
-        = form_tag courses_path, method: :get, class: "form-inline my-2 my-lg-0" do
-          = text_field_tag(:title, params[:title], placeholder: "Search", class: "form-control")
-          %button.btn.btn-primary.my-sm.my-sm-0{:type => "submit"}
-            .fa.fa-search{"aria-hidden" => "true"}
+        .form-inline
+          = search_form_for @ransack_courses, as: :courses_search, url: :courses do |f|
+            = f.search_field :title_cont, placeholder: 'Find a course', class: "form-control form-control-sm", style: 'float: left'
+            %button.btn.btn-sm.btn-primary{:type => "submit"}
+              .fa.fa-search{"aria-hidden" => "true"}
         %li.nav-item
           = link_to "#", class: 'nav-link' do
             .fa.fa-home
