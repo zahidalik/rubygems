@@ -32,5 +32,6 @@ class Course < ApplicationRecord
   # def to_s
   #   slug
   # end
-
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_user }
 end

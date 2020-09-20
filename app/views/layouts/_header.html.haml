@@ -28,10 +28,10 @@
             = f.search_field :title_cont, placeholder: 'Find a course', class: "form-control form-control-sm", style: 'float: left'
             %button.btn.btn-sm.btn-primary{:type => "submit"}
               .fa.fa-search{"aria-hidden" => "true"}
-        %li.nav-item
-          = link_to "#", class: 'nav-link' do
-            .fa.fa-home
-            Another link
+        %li.nav-item{class: "#{'active font-weight-bold' if current_page?(activity_path)}"}
+          = link_to activity_path, class: 'nav-link' do
+            .fa.fa-bell
+            Activity
         %li.nav-item.dropdown
           %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
             .fa.fa-user
