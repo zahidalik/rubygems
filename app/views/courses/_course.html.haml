@@ -27,5 +27,7 @@
           = course.user.username
   .card-footer
     = link_to 'Show', course, class: 'btn btn-sm btn-primary'
-    = link_to 'Edit', edit_course_path(course), class: 'btn btn-sm btn-warning'
-    = link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+    - if current_user
+      - if course.user == current_user || current_user.has_role?(:admin)
+        = link_to 'Edit', edit_course_path(course), class: 'btn btn-sm btn-warning'
+        = link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
