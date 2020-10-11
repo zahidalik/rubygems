@@ -4,6 +4,8 @@
   .card-body
     = lesson.content
     = lesson.course
-  .card-footer
-    = link_to 'Edit', edit_lesson_path(lesson), class: 'btn btn-warning'
-    = link_to 'Destroy', lesson, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+  - if current_user.present?
+    - if policy(lesson).edit?
+      .card-footer
+        = link_to 'Edit', edit_lesson_path(lesson), class: 'btn btn-warning'
+        = link_to 'Destroy', lesson, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
