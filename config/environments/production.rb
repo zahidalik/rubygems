@@ -3,12 +3,13 @@ Rails.application.configure do
 
   # Code is not reloaded between requests.
   config.cache_classes = true
+  # The following is the code to send emails with error logs by Exception Notification gem
   Rails.application.config.middleware.use ExceptionNotification::Rack,
   email: {
     deliver_with: :deliver, # Rails >= 4.2.1 do not need this option since it defaults to :deliver_now
     email_prefix: '[PREFIX] ',
     sender_address: %{"rubygems-zahid" <support@rubygems-zahid.herokuapp.com>},
-    exception_recipients: %w{muwahid2gmail.com}
+    exception_recipients: %w{muwahid2@gmail.com}
   }
 
   # Eager load code on boot. This eager loads most of Rails and
