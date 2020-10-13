@@ -11,7 +11,9 @@ class CoursesController < ApplicationController
     #   # @courses = @q.result.includes(:user)
     # end
     @ransack_courses = Course.ransack(params[:courses_search], search_key: :courses_search) #navbar search
-    @courses = @ransack_courses.result.includes(:user)
+    # After having pagy gem we will comment the following line
+    # @courses = @ransack_courses.result.includes(:user)
+    @pagy, @courses = pagy(@ransack_courses.result.includes(:user))
   end
 
   # GET /courses/1
@@ -37,7 +39,7 @@ class CoursesController < ApplicationController
     @course = Course.new(course_params)
     authorize @course
     @course.user = current_user
-    
+
     respond_to do |format|
       if @course.save
         format.html { redirect_to @course, notice: 'Course was successfully created.' }
