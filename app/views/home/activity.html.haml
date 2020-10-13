@@ -1,3 +1,8 @@
+- content_for :title do
+  Rubygems
+  \|
+  Activity
+
 %h3
   .text-center
     Activity
@@ -11,7 +16,8 @@
       = activity.id
       = activity.trackable_type
       = activity.trackable_id
-      = link_to activity.trackable, activity.trackable
+      / the following line did not work after nesting the resources
+      /= link_to activity.trackable, activity.trackable
       = activity.key
       = activity.parameters
       = activity.owner
