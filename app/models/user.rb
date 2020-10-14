@@ -19,6 +19,7 @@ class User < ApplicationRecord
   friendly_id :email, use: :slugged
 
   has_many :courses
+  has_many :enrollments
 
   # after_create :assign_default_role
   # def assign_default_role
