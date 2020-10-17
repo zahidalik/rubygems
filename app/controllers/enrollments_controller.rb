@@ -4,7 +4,8 @@ class EnrollmentsController < ApplicationController
   # GET /enrollments
   # GET /enrollments.json
   def index
-    @enrollments = Enrollment.all
+    # @enrollments = Enrollment.all
+    @pagy, @enrollments = pagy(Enrollment.all)
     authorize @enrollments
   end
 
@@ -66,7 +67,7 @@ class EnrollmentsController < ApplicationController
     def set_course
       @course = Course.friendly.find(params[:course_id])
     end
-    
+
     def set_enrollment
       @enrollment = Enrollment.find(params[:id])
     end

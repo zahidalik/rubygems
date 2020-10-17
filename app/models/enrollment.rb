@@ -7,10 +7,12 @@ class Enrollment < ApplicationRecord
   validates_uniqueness_of :course_id, scope: :user_id # course can not have same user enrolled twice
   validate :cant_subscribe_to_own_course # user can't create a subscription if course.user == current_user
 
+  scope :pending_review, -> { where(rating: [0, nil, ''], review: [0, nil, '']) }
+
   def to_s
     user.to_s + " " + course.to_s
   end
-  
+
   protected
   def cant_subscribe_to_own_course
     if self.new_record?
@@ -21,5 +23,5 @@ class Enrollment < ApplicationRecord
       end
     end
   end
-  
+
 end
