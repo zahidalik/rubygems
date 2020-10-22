@@ -36,9 +36,12 @@
               .fa.fa-graduation-cap
               Learn
             .dropdown-menu{"aria-labelledby" => "studentDropdown"}
-              /= link_to new_course_path, class: "dropdown-item" do
-              /  .fa.fa-plus
-              /  New course
+              = link_to purchased_courses_path, class: "dropdown-item" do
+                .fa.fa-graduation-cap
+                Purchased courses
+              = link_to pending_review_courses_path, class: "dropdown-item" do
+                .fa.fa-star
+                Pending review
         - if current_user.has_role?(:teacher)
           %li.nav-item.dropdown
             %a#teacherDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
@@ -49,6 +52,12 @@
                 .fa.fa-plus
                 .fa.fa-graduation-cap
                 New course
+              = link_to created_courses_path, class: "dropdown-item" do
+                .fa.fa-graduation-cap
+                Created courses
+              = link_to my_students_enrollments_path, class: "dropdown-item" do
+                .fa.fa-users
+                My students
         - if current_user.has_role?(:admin)
           %li.nav-item.dropdown
             %a#adminDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
