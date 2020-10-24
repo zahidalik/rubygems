@@ -1,7 +1,8 @@
 class Enrollment < ApplicationRecord
-  belongs_to :course
-  belongs_to :user
-
+  belongs_to :course, counter_cache: true
+  #Course.find_each { |course| Course.reset_counters(course.id, :enrollments) }
+  belongs_to :user, counter_cache: true
+  #User.find_each { |user| User.reset_counters(user.id, :enrollments) }
   validates :course, :user, presence: true
   validates_presence_of :rating, if: :review?
   validates_presence_of :review, if: :rating?
