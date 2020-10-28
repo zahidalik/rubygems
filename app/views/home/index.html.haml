@@ -46,22 +46,39 @@
     .row
     Learn from your schedule
 
+- if current_user.present?
+  %hr
+  %h2
+    .fa.fa-user-graduate
+    Conitnue Learning
+  .card-columns
+    - @purchased_courses.each do |course|
+      = render 'courses/course', course: course
 %hr
 %h2
+  .fa.fa-chart-line
   Popular Courses
 .card-columns
-  - @courses.each do |course|
+  - @popular.each do |course|
     = render 'courses/course', course: course
 %hr
 %h2
+  .fa.fa-star
   Top Rated Courses
 .card-columns
-  - @courses.each do |course|
+  - @top_rated.each do |course|
     = render 'courses/course', course: course
 %hr
 %h2
+  .fa.fa-clock
   Latest courses
 .card-columns
-  - @latest_courses.each do |course|
+  - @latest.each do |course|
     = render 'courses/course', course: course
 %hr
+%h2
+  .fa.fa-comment
+  What our students have to say
+.card-columns
+  - @latest_good_reviews.each do |enrollment|
+    = render 'enrollments/enrollment', enrollment: enrollment

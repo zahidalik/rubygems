@@ -9,6 +9,10 @@ class Course < ApplicationRecord
 
   validates :title, uniqueness: true
 
+  scope :latest, -> { order(created_at: :desc).limit(3) }
+  scope :top_rated, -> { order(average_rating: :desc, created_at: :desc).limit(3) }
+  scope :popular, -> { order(enrollments_count: :desc, created_at: :desc).limit(3) }
+
   def to_s
     title
   end
