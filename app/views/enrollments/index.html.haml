@@ -30,36 +30,27 @@
         %th ID
         %th
           .fa.fa-user
-          User
-          .row
-          = sort_link(@q, :user_email)
+          = sort_link(@q, :user_email, "User")
         %th
           .fa.fa-clock
           .fa.fa-lock-open
-          Bought
-          .row
-          = sort_link(@q, :created_at)
+          = sort_link(@q, :created_at, "Bought")
         %th
           .fa.fa-graduation-cap
-          Course
-          .row
-          = sort_link(@q, :course_title)
+          = sort_link(@q, :course_title, "Course")
         %th
           .fa.fa-dollar-sign
-          Price
-          .row
           = sort_link(@q, :price)
         %th
           .text-warning.fa.fa-clock
-          Reviewed on
-          .row
-          = sort_link(@q, :updated_at)
+          = sort_link(@q, :updated_at, "Reviewed on")
         %th
-          .text-warning.fa.fa-clock
+          .text-warning.fa.fa-star
           = sort_link(@q, :rating)
         %th
           .text-warning.fa.fa-comment
           Review
+        %th Progress
         %th
         %th
         %th
@@ -77,8 +68,13 @@
               = enrollment.updated_at.strftime("%d-%b-%Y, %H:%M")
           %td= enrollment.rating
           %td= enrollment.review
-          %td= link_to 'See Review', enrollment
-          %td= link_to 'Add Review', edit_enrollment_path(enrollment)
-          %td= link_to 'Delete Enrollment', enrollment, method: :delete, data: { confirm: 'Are you sure?' }
+          %td= number_to_percentage(enrollment.course.progress(enrollment.user), precision: 1)
+          %td= link_to 'Show review', enrollment
+          %td
+            - if policy(enrollment).edit?
+              = link_to 'Add review', edit_enrollment_path(enrollment)
+          %td
+            - if policy(enrollment).destroy?
+              = link_to 'Delete Enrollment', enrollment, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br

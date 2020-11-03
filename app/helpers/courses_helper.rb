@@ -7,7 +7,7 @@ module CoursesHelper
         link_to course_path(course) do
           # "You have already bought the course. Enjoy learning " +
           "<i class='fa fa-spinner'></i>".html_safe + " " +
-          "#{course.progress(current_user)}%"
+          number_to_percentage(course.progress(current_user), precision: 1)
         end
       elsif course.price > 0
         link_to number_to_currency(course.price), new_course_enrollment_path(course), class: 'btn btn-success'
