@@ -85,6 +85,9 @@
               = link_to activity_path, class: "dropdown-item" do
                 .fa.fa-bell
                 Activity
+              = link_to analytics_path, class: "dropdown-item" do
+                .fa.fa-chart-line
+                Analytics
               /.dropdown-divider
               /%a.dropdown-item{:href => "#"} Something else here
       /Search Navbar by ransack
@@ -105,7 +108,6 @@
               .fa.fa-power-off
               Log out
             .dropdown-divider
-            %a.dropdown-item{:href => "#"} Something else here
   - else
     %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
       %span.navbar-toggler-icon
