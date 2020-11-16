@@ -20,9 +20,9 @@ class HomeController < ApplicationController
 
   def analytics
     if current_user.has_role?(:admin)
-      @users = User.all
-      @enrollments = Enrollment.all
-      @courses = Course.all
+      # @users = User.all # We hide it out as we are using json to render charts
+      # @enrollments = Enrollment.all # We hide it out as we are using json to render charts
+      # @courses = Course.all
     else
       redirect_to root_path, alert: 'You are not authorized to access this page!'
     end
