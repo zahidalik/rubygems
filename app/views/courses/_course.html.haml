@@ -39,9 +39,25 @@
   /.card-footer
   .card-footer
     = link_to 'Show', course, class: 'btn btn-sm btn-primary'
-    - if current_user.present?
-      - if policy(course).owner?
+  - if current_user.present?
+    - if policy(course).owner?
+      .card-footer
         = link_to 'Add lesson', new_course_lesson_path(course, @lesson), class: 'btn btn-primary btn-sm'
-      - if policy(course).edit?
+    - if policy(course).edit?
+      .card-footer
         = link_to 'Edit', edit_course_path(course), class: 'btn btn-sm btn-warning'
         = link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+    - if policy(course).destroy?
+      .card-footer
+        - if course.published?
+          .badge.badge-success published
+        - else
+          .badge.badge-danger unpublished
+    - if policy(course).approve?
+      .card-footer
+        - if course.approved?
+          .badge.badge-success approved
+          = link_to "Unapprove", unapprove_course_path(course), method: :patch, class: "btn btn-sm btn-danger"
+        - else
+          .badge.badge-danger unapproved
+          = link_to "Approve", approve_course_path(course), method: :patch, class: "btn btn-sm btn-success"
