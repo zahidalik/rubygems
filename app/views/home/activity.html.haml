@@ -16,6 +16,7 @@
       /= activity.id
       = activity.created_at.strftime('%d-%m-%Y %H:%M')
       = "(#{time_ago_in_words(activity.created_at)})"
+      = model_lable(activity.trackable_type)
       = activity.trackable_type
       /= activity.trackable_id
       / the following line did not work after nesting the resources
@@ -29,6 +30,7 @@
       - else
         = link_to activity.trackable, activity.trackable
       = activity.key
+      = crud_lable(activity.key.match(/\.(.*)/)[1])
       /= activity.owner
       by
       = link_to activity.owner, user_path(activity.owner)
