@@ -14,10 +14,15 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
-import "bootstrap"
 
 require("trix")
 require("@rails/actiontext")
+
+import 'bootstrap/dist/js/bootstrap'
+import 'bootstrap/dist/css/bootstrap'
+require("stylesheets/application.scss")
+import "@fortawesome/fontawesome-free/css/all"
+
 require("chartkick")
 require("chart.js")
 
