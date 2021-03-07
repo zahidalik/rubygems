@@ -19,6 +19,8 @@ class Course < ApplicationRecord
   scope :unapproved, -> { where(approved: false) }
 
   has_one_attached :avatar
+  validates :avatar, attached: true, content_type: [:png, :jpg, :jpeg],
+                     size: { less_than: 500.kilobytes , message: 'Size should be less than 500kb' }
 
   def to_s
     title

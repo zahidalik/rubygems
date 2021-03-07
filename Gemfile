@@ -73,3 +73,4 @@ gem "chartkick"
 gem "groupdate"
 gem 'rails-erd', group: :development
 gem 'ranked-model'
+gem 'active_storage_validations'

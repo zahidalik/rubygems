@@ -15,9 +15,9 @@
       %h3
         .fa.fa-graduation-cap
         = @course.title
-        - if @course.avatar.attached?
-          .row
-          = image_tag @course.avatar, class: "img-fluid"
+        /- if @course.avatar.attached?
+        /  .row
+        /  = image_tag @course.avatar, width: "300px", height: "200px"
       .p-2
       .fa.fa-clock
       = @course.updated_at.strftime("%d %b %Y")
