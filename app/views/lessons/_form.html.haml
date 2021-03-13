@@ -4,7 +4,7 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    = f.input :title
+    = f.input :title, input_html: { autocomplete: 'off'}
     /= f.input :content
     = f.label :content
     = f.rich_text_area :content
@@ -12,6 +12,12 @@
     / after nested resources we had to comment out both the below codes
     /= f.association :course
     /= f.input :course_id, input_html: {value: @lesson.course_id || params[:course_id]}, as: :hidden
-  %p
+    %p
+    = f.input :video
+    - if @lesson.video.attached?
+      = @lesson.video.filename
+    = f.input :video_thumbnail
+    - if @lesson.video_thumbnail.attached?
+      = @lesson.video_thumbnail.filename
   .form-actions
     = f.button :submit

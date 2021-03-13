@@ -2,9 +2,25 @@ class Lesson < ApplicationRecord
   belongs_to :course, counter_cache: true
   #Course.find_each { |course| Course.reset_counters(course.id, :lessons) }
   validates :title, :content, :course, presence: true
+  validates :title, length: { maximum: 70 }
+  validates_uniqueness_of :title, scope: :course_id
+
   has_many :user_lessons, dependent: :destroy
 
   has_rich_text :content
+  has_one_attached :video
+  has_one_attached :video_thumbnail
+
+  validates :video, content_type: ['video/mp4'],
+            size: { less_than: 50.megabytes , message: 'Size should be less than 50MB' }
+  validates :video_thumbnail, content_type: [:png, :jpg, :jpeg],
+            size: { less_than: 500.kilobytes , message: 'Size should be less than 500kb' }
+
+  # THE FOLLOWING CODE VALIDATES VIDEO THUMBNAIL FOR PRESENCE
+  # validates :video_thumbnail, presence: true, if: :video_present?
+  # def video_present?
+  #   self.video.present?
+  # end
 
   extend FriendlyId
   friendly_id :title, use: :slugged
