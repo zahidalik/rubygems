@@ -6,9 +6,10 @@
   .form-inputs
     = f.input :title, input_html: { autocomplete: 'off'}
     /= f.input :content
-    = f.label :content
-    = f.rich_text_area :content
-    %small= f.error :content, class: 'text-danger'
+    /= f.label :content
+    /= f.rich_text_area :content
+    /%small= f.error :content, class: 'text-danger'
+    = f.input :content, as: :rich_text_area
     / after nested resources we had to comment out both the below codes
     /= f.association :course
     /= f.input :course_id, input_html: {value: @lesson.course_id || params[:course_id]}, as: :hidden

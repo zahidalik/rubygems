@@ -28,5 +28,6 @@ Rails.application.routes.draw do
     get 'course_popularity'
     get 'money_makers'
   end
+  resources :youtube, only: :show
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -17,11 +17,14 @@ module Rubygems
     # the framework and any gems in your application.
 
     # To show videos inside action text
-    config.after_initialize do
+    config.to_prepare do
       ActionText::ContentHelper.allowed_attributes.add 'style'
       ActionText::ContentHelper.allowed_attributes.add 'controls'
       ActionText::ContentHelper.allowed_tags.add 'video'
+      ActionText::ContentHelper.allowed_tags.add 'audio'
       ActionText::ContentHelper.allowed_tags.add 'source'
+      # For youtube embeds
+      ActionText::ContentHelper.allowed_tags << "iframe"
     end
   end
 end
