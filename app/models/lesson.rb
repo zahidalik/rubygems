@@ -6,6 +6,7 @@ class Lesson < ApplicationRecord
   validates_uniqueness_of :title, scope: :course_id
 
   has_many :user_lessons, dependent: :destroy
+  has_many :comments, dependent: :nullify
 
   has_rich_text :content
   has_one_attached :video
