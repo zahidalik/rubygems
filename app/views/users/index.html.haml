@@ -36,6 +36,7 @@
         %th= 'last_sign_in_ip'.humanize
         %th= 'courses_count'.humanize
         %th= 'enrollments_count'.humanize
+        %th= 'user_lessons_count'.humanize
         %th Confirmed?
         %th Roles
     %tbody
@@ -56,6 +57,7 @@
           %td= user.last_sign_in_ip
           %td= user.courses_count
           %td= user.enrollments_count
+          %td= user.user_lessons_count
           - if user.confirmed_at.present?
             %td Yes
           - else
